@@ -5,16 +5,12 @@ import { useFrame } from '@react-three/fiber'
 import Title from './Title'
 
 const Layout = () => {
-  const ref = useRef()
-
   return (
-    <ScrollControls pages={3}>
+    <ScrollControls pages={1}>
       <Scroll>
-        <Pages refText={ref} />
+        <Pages />
       </Scroll>
-      <Scroll html>
-        <Title ref={ref}>industry 4.0</Title>
-      </Scroll>
+      <Scroll html>{/* <Title>industry 4.0</Title> */}</Scroll>
     </ScrollControls>
   )
 }

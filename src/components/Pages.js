@@ -6,19 +6,6 @@ import { useScroll } from '@react-three/drei'
 
 const Pages = props => {
   const { height } = useThree(state => state.viewport)
-  const ref = useRef(0)
-
-  const scroll = useScroll()
-  useFrame((state, delta) => {
-    const r2 = scroll.range(1 / 3, 2 / 3)
-    console.log('B', props.refText.current.left)
-
-    props.refText.current.left = `${r2 * 100} px`
-  })
-
-  useFrame(() => {
-    ref.current += 0.5
-  })
 
   return (
     <Fragment>

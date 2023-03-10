@@ -1,7 +1,17 @@
-const { forwardRef, useEffect } = require('react')
+import { useScroll } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
-const Title = forwardRef((props, ref) => {
-  useEffect(() => {}, [ref.current])
+const { useRef } = require('react')
+
+const Title = props => {
+  const ref = useRef()
+
+  const scroll = useScroll()
+  useFrame(() => {
+    const r2 = scroll.range(1 / 3, 1 / 3)
+    console.log('REF', r2)
+    ref.current.left = `${r2 * 100} px`
+  })
   return (
     <span className="scroll--right">
       <h1
@@ -20,6 +30,6 @@ const Title = forwardRef((props, ref) => {
       </h1>
     </span>
   )
-})
+}
 
 export default Title
