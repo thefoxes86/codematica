@@ -2,26 +2,25 @@ import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ScrollControls, Scroll, OrbitControls } from '@react-three/drei'
-
-import Pages from '@/components/Pages'
 import { Fragment, Suspense, useEffect, useRef } from 'react'
 import CameraScroll from '@/components/CameraScroll'
 import { gsap } from 'gsap'
+import Layout from '@/components/Layout'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const ref = useRef()
+  const containerText = useRef()
 
   useEffect(() => {
     gsap.to(ref.current, {
-      xPercent: 20,
+      x: '+=40',
       ease: 'none',
       scrollTrigger: {
-        trigger: ref.current,
-        start: 'top center',
-        end: 'bottom top',
+        trigger: '.scroll--right',
+        start: 'top top',
+        end: 'bottom bottom',
         scrub: true,
       },
     })
@@ -38,27 +37,7 @@ export default function Home() {
         <main className={styles.main}>
           <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
             <Suspense fallback={null}>
-              <ScrollControls pages={3}>
-                <Scroll>
-                  <Pages />
-                </Scroll>
-                <Scroll html>
-                  <span ref={ref} className="scroll--right">
-                    <h1
-                      style={{
-                        overflow: 'hidden',
-                        width: '100vw',
-                        position: 'absolute',
-                        top: '140vh',
-                        fontSize: '9.5rem',
-                        color: 'white',
-                      }}
-                    >
-                      industry 4.0
-                    </h1>
-                  </span>
-                </Scroll>
-              </ScrollControls>
+              <Layout />
               <CameraScroll />
             </Suspense>
           </Canvas>
