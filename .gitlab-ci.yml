@@ -7,8 +7,8 @@ deploy:
   image: docker:dind
   stage: deploy
   script:
-    - docker build -t app/codematica .
-    - docker run -d -p 3000:3000 --rm --name codematica app/codematica
+    - docker build
+    - docker run -d -p 3000:3000
   tags:
     - docker
   only:
