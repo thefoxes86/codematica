@@ -10,8 +10,8 @@ const CameraScroll = () => {
 
   return (
     <OrbitControls
-      enablePan={true}
-      enableRotate={true}
+      enablePan={false}
+      enableRotate={false}
       enableZoom={false}
       ref={controls}
     />

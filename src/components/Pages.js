@@ -11,7 +11,7 @@ const Pages = props => {
     <Fragment>
       <Page position={[0, height * 0, 0]}>
         {/* <fog attach="fog" args={['#202025', 0, 80]} /> */}
-        <Cloud count={8} radius={23} />
+        <Cloud count={8} radius={20} />
       </Page>
       <Page position={[0, height * 1, 0]}></Page>
       <Page position={[0, height * 2, 0]}></Page>

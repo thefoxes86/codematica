@@ -6,14 +6,21 @@ import { Fragment, Suspense, useEffect, useRef } from 'react'
 import CameraScroll from '@/components/CameraScroll'
 import { gsap } from 'gsap'
 import Layout from '@/components/Layout'
+import { CAMERA_DIST } from '@/utils/variables'
+import { PerspectiveCamera } from '@react-three/drei'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const ref = useRef()
+  const resolution = useRef()
+  const fov = useRef()
   const containerText = useRef()
 
   useEffect(() => {
+    fov.current =
+      2 * Math.atan(window.innerHeight / (2 * CAMERA_DIST)) * (180 / Math.PI)
+    resolution.current = window.innerWidth / window.innerHeight
     gsap.to(ref.current, {
       x: '+=40',
       ease: 'none',
@@ -35,7 +42,15 @@ export default function Home() {
       </Head>
       <body>
         <main className={styles.main}>
-          <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
+          <Canvas dpr={[1, 2]}>
+            <PerspectiveCamera
+              makeDefault
+              resolution={resolution.current}
+              fov={fov.current}
+              near={0.001}
+              far={1000}
+              position={[0, 0, 10]}
+            />
             <Suspense fallback={null}>
               <Layout />
               <CameraScroll />
