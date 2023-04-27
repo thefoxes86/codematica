@@ -29,6 +29,7 @@ const wordsList = [
   'benefit',
   'way',
   'changes',
+  'test',
 ]
 
 export default wordsList
